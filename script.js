@@ -14,9 +14,9 @@ canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', stopDrawing);
 
-canvas.addEventListener('touchstart', startDrawing);
-canvas.addEventListener('touchmove', draw);
-canvas.addEventListener('touchend', stopDrawing);
+// canvas.addEventListener('touchstart', startDrawing);
+// canvas.addEventListener('touchmove', draw);
+// canvas.addEventListener('touchend', stopDrawing);
 
 function startDrawing(e) {
   isDrawing = true;
