@@ -20,14 +20,14 @@ canvas.addEventListener('touchend', stopDrawing);
 function startDrawing(e) {
   e.preventDefault();
   isDrawing = true;
-  console.log(canvas.offsetTop)
+  console.log(canvas.getBoundingClientRect())
   ctx.beginPath();
   if (e.type === 'mousedown') {
     ctx.moveTo(e.offsetX, e.offsetY);
   } else {
     e.preventDefault();
     console.log("touch : e: ", e)
-    ctx.moveTo(e.touches[0].clientX, e.touches[0].clientY - canvas.offsetTop);
+    ctx.moveTo(e.touches[0].clientX, e.touches[0].clientY - canvas.getBoundingClientRect().y);
   }
 }
 
@@ -39,7 +39,7 @@ function draw(e) {
       ctx.lineTo(e.offsetX, e.offsetY);
     } else {
       e.preventDefault();
-      ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY - canvas.offsetTop);
+      ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY - canvas.getBoundingClientRect());
     }
     ctx.stroke();
   });
