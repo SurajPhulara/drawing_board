@@ -25,8 +25,9 @@ function startDrawing(e) {
   if (e.type === 'mousedown') {
     ctx.moveTo(e.offsetX, e.offsetY);
   } else {
+    e.preventDefault();
     console.log("touch : e: ", e)
-    ctx.moveTo(e.touches[0].clientX, e.touches[0].clientY);
+    ctx.moveTo(e.touches[0].clientX, e.touches[0].clientY - canvas.offsetTop);
   }
 }
 
@@ -37,7 +38,8 @@ function draw(e) {
     if (e.type === 'mousemove') {
       ctx.lineTo(e.offsetX, e.offsetY);
     } else {
-      ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY);
+      e.preventDefault();
+      ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY - canvas.offsetTop);
     }
     ctx.stroke();
   });
