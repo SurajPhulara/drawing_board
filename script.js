@@ -13,101 +13,35 @@ let isDrawing = false;
 canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', stopDrawing);
-
-// canvas.addEventListener('touchstart', startDrawing);
-// canvas.addEventListener('touchmove', draw);
-// canvas.addEventListener('touchend', stopDrawing);
+canvas.addEventListener('touchstart', startDrawing);
+canvas.addEventListener('touchmove', draw);
+canvas.addEventListener('touchend', stopDrawing);
 
 function startDrawing(e) {
+  e.preventDefault();
   isDrawing = true;
   ctx.beginPath();
-  ctx.moveTo(e.offsetX, e.offsetY);
+  if (e.type === 'mousedown') {
+    ctx.moveTo(e.offsetX, e.offsetY);
+  } else {
+    ctx.moveTo(e.touches[0].pageX, e.touches[0].pageY);
+  }
 }
 
 function draw(e) {
+  e.preventDefault();
   if (!isDrawing) return;
-  console.log("second")
   requestAnimationFrame(() => {
-    ctx.lineTo(e.offsetX, e.offsetY);
+    if (e.type === 'mousemove') {
+      ctx.lineTo(e.offsetX, e.offsetY);
+    } else {
+      ctx.lineTo(e.touches[0].pageX, e.touches[0].pageY);
+    }
     ctx.stroke();
   });
 }
 
 function stopDrawing(e) {
+  e.preventDefault();
   isDrawing = false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let canvas = document.querySelector("canvas");
-// let ctx = canvas.getContext("2d");
-
-// canvas.width = window.innerWidth;
-// canvas.height = window.innerHeight;
-
-// ctx.lineWidth = 3;
-// ctx.lineCap = 'round';
-// ctx.lineJoin = 'round';
-
-// let isDrawing = false;
-
-// canvas.addEventListener('mousedown', startDrawing);
-// canvas.addEventListener('mousemove', draw);
-// canvas.addEventListener('mouseup', stopDrawing);
-
-// canvas.addEventListener('touchstart', startDrawing);
-// canvas.addEventListener('touchmove', draw);
-// canvas.addEventListener('touchend', stopDrawing);
-
-// function startDrawing(e) {
-//   isDrawing = true;
-//   ctx.beginPath();
-//   ctx.moveTo(e.offsetX, e.offsetY);
-// }
-
-// function draw(e) {
-//   if (!isDrawing) return;
-//   requestAnimationFrame(() => {
-//     ctx.lineTo(e.offsetX, e.offsetY);
-//     ctx.stroke();
-//   });
-// }
-
-// function stopDrawing(e) {
-//   isDrawing = false;
-// }
