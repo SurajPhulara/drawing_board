@@ -24,7 +24,7 @@ function startDrawing(e) {
   if (e.type === 'mousedown') {
     ctx.moveTo(e.offsetX, e.offsetY);
   } else {
-    ctx.moveTo(e.touches[0].offsetX, e.touches[0].offsetY);
+    ctx.moveTo(e.offsetX, e.offsetY);
   }
 }
 
@@ -35,7 +35,7 @@ function draw(e) {
     if (e.type === 'mousemove') {
       ctx.lineTo(e.offsetX, e.offsetY);
     } else {
-      ctx.lineTo(e.touches[0].offsetX, e.touches[0].offsetY);
+      ctx.lineTo(e.offsetX, e.offsetY);
     }
     ctx.stroke();
   });
