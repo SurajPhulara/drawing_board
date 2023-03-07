@@ -39,7 +39,7 @@ function draw(e) {
       ctx.lineTo(e.offsetX, e.offsetY);
     } else {
       e.preventDefault();
-      ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY - canvas.getBoundingClientRect());
+      ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY - canvas.getBoundingClientRect().y);
     }
     ctx.stroke();
   });
